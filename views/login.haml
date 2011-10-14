@@ -1,0 +1,7 @@
+- content_for :body do
+  %h1 Chat++
+  %h2 Powered by Google Closure Tools and Torquebox
+  %p Enter your username:
+  %form{ :method=>:post }
+    %input{:type=>:text, :name=>:username}
+    %input{:type=>:submit, :id=>'login', :value=>'Login'}

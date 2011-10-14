@@ -1,0 +1,7 @@
+dir=`pwd`
+cd ..
+export TORQUEBOX_HOME=`pwd`/torquebox/torquebox-current
+export JRUBY_HOME=$TORQUEBOX_HOME/jruby
+export JBOSS_HOME=$TORQUEBOX_HOME/jboss
+export PATH=$JRUBY_HOME/bin:$PATH
+cd $dir

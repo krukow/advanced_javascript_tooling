@@ -1,0 +1,83 @@
+
+html {
+  font-family: tahoma;
+}
+
+.message .sender {
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.message.system {
+  color: #999;
+}
+
+
+#chat-table {
+  width: 100%;
+}
+
+#chat-table #recipient {
+  width: 8em;
+  border: 1px solid #777;
+}
+
+#chat-table #chat {
+  border: 1px solid #777;
+}
+
+.chat-window {
+  overflow-y: scroll;
+}
+
+
+.recipient.unread {
+  font-style: italic;
+}
+
+.recipient.self {
+  color: #999;
+}
+
+#chat-table td {
+  width: auto;
+  vertical-align: top;
+}
+
+.recipient.current {
+  font-weight: bold;
+  color: blue;
+  background-color: #eee
+}
+
+#chat-table td#input-cell {
+  height: 2em;
+}
+
+input,button {
+  border: 1px solid #333;
+  background-color: #eee;
+  font-size: 1.4em;
+}
+
+fieldset {
+padding:10px;
+	border:1px solid #369;
+}
+.goog-tab-bar {
+    width:100px;
+
+}
+.goog-tab-content {
+	height:16em;
+	margin:0;
+	border:1px solid #6b90da;
+	border-top:0;
+	padding:4px 8px;
+	background:#fff;
+	overflow:auto;
+}
+.hid {
+	display: none;
+}
+

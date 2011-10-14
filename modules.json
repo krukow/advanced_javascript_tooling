@@ -1,0 +1,8 @@
+{
+    "main":"chatpp_modules",
+    "modules" : {
+        "chatpp_storage_module" : {
+            "files" : ["public/chatpp/storage/controller.js", "public/chatpp/storage/module.js"]
+        }
+    }
+}

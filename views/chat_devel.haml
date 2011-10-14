@@ -1,0 +1,31 @@
+
+- content_for :head do
+  %title
+    Chat++
+  %script{ :src=>"closure-library/closure/goog/base.js"}
+  %script{ :src=>"chatpp-deps.js"}
+  %script{ :src=>"chatpp/moduleinfo.js"}
+  :javascript
+    document.addEventListener('DOMContentLoaded', function(){
+      var username = '#{session[:username]}';
+      var host = window.location.host.split( ':' )[0];
+      var stomp_url = 'ws://' + host + ':8675';
+      chatpp.modules.init(username,stomp_url);
+    },false);
+- content_for :body do
+  #userlist{:class=>"goog-tab-bar goog-tab-bar-start"}
+  #start_content{:class=>"goog-tab-content"}
+  %p
+  %form{:id=>"message-form", :method=>"POST", :action=>"/send"}
+    %input{:id => 'message-txt', :type=>"text", :size=>"40"}
+    %input{:id => 'message-btn', :type=>"submit", :value=>"Send"}
+    %input{:id => 'message-store', :type=>"checkbox", :value=>"store"}
+      Store messages
+    %input{:id => 'message-store', :type=>"button", :value=>"Clear",
+      :onclick => "localStorage.clear();"}
+
+
+
+  %script{ :src=>"chatpp/modules.js"}
+
+

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Converter</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <style>
+              #input {float:left}
+
+              #output {position:relative; left:20px;}
+
+    </style>
+</head>
+<body>
+<textarea placeholder="Input" id="input" rows="40" cols="40"></textarea>
+
+<textarea placeholder="Output" id="output" rows="40" cols="40"></textarea>
+<div>
+    <button id="convert">Konverter</button>
+</div>
+<script>
+    /**
+BEGIN:VCARD
+VERSION:3.0
+N:Gump;Forrest
+FN:Forrest Gump
+ORG:Bubba Gump Shrimp Co.
+TITLE:Shrimp Man
+PHOTO;VALUE=URL;TYPE=GIF:http://www.example.com/dir_photos/my_photo.gif
+TEL;TYPE=WORK,VOICE:(111) 555-1212
+TEL;TYPE=HOME,VOICE:(404) 555-1212
+ADR;TYPE=WORK:;;100 Waters Edge;Baytown;LA;30314;United States of America
+LABEL;TYPE=WORK:100 Waters Edge\nBaytown, LA 30314\nUnited States of America
+ADR;TYPE=HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America
+LABEL;TYPE=HOME:42 Plantation St.\nBaytown, LA 30314\nUnited States of America
+EMAIL;TYPE=PREF,INTERNET:forrestgump@example.com
+REV:20080424T195243Z
+END:VCARD
+     */
+    function convert_text(text) {
+        var lines = text.split("\n"),
+            name_arr,name = "",
+            org_arr,org = "",
+            email_tmp, email="";
+        for (var i=0,N=lines.length;i<N;i++) {
+            /** Søren her **/
+            if (/^N:/.test(lines[i])) {//Leder efter N: for navn
+                 name = lines[i].substring("N:".length);
+                 name_arr = name.split(";")
+                 if (name_arr.length > 1) {
+                    name = name_arr[1] + " " + name_arr[0];
+                 } else {
+                     name = name_arr[0];
+                 }
+            } else if (/^ORG:/.test(lines[i])) {//Leder efter ORG: for organisation
+               org = lines[i].substring("ORG:".length);
+
+            } else if (/^EMAIL/.test(lines[i])) {//Leder efter EMAIL...:... for email
+               email_tmp = lines[i].indexOf(":");
+               email = lines[i].substring(email_tmp+1);
+            }
+            /** Søren slut **/
+        }
+        return name + ",\n" + org + ",\n" + email;
+    }
+
+    this.onload = function(){
+        document.getElementById("convert").addEventListener("click", function(){
+            var input = document.getElementById("input"),
+                output = document.getElementById("output");
+
+            var inputText = input.value,
+                outputText;
+            if (inputText) {
+                try {
+                    outputText = convert_text(inputText);
+                } catch (e) {
+                    outputText = null;
+                }
+                if (outputText) {
+                    output.value = outputText;
+                } else {
+                    alert("Konvertering fejlede :(");
+                }
+            } else {
+                alert("Indtast tekst i vestre felt.");
+            }
+
+        },false);
+    };
+</script>
+</body>
+</html>
